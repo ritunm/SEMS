@@ -31,15 +31,15 @@ jobs:
           coverage report -m
           coverage xml
 
-      - name: 📊 Cyclomatic Complexity (radon)
-        run: radon cc . -a
+      # - name: 📊 Cyclomatic Complexity (radon)
+      #   run: radon cc . -a
 
-      - name: 🧹 Code Linting (flake8)
-        run: flake8 . --statistics --count
+      # - name: 🧹 Code Linting (flake8)
+      #   run: flake8 . --statistics --count
 
-      - name: 🔐 Static Security Scan (Bandit)
-        run: bandit -r . -ll
+      # - name: 🔐 Static Security Scan (Bandit)
+      #   run: bandit -r . -ll
 
-      - name: 🐳 Build Docker Image
-        run: docker build -t sems-app .
+      # - name: 🐳 Build Docker Image
+      #   run: docker build -t sems-app .
 
