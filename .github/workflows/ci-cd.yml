@@ -27,7 +27,7 @@ jobs:
 
       - name: ✅ Run Tests with Coverage
         run: |
-          coverage run -m pytest
+          coverage run integration_tests.py
           coverage report -m
           coverage xml
 
