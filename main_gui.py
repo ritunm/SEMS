@@ -1,10 +1,11 @@
-# gui_app.py
-from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QPushButton, QLabel,
-                             QTextEdit, QHBoxLayout, QLineEdit, QInputDialog, QMessageBox)
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QPushButton, QLabel,
+    QTextEdit, QHBoxLayout, QInputDialog, QMessageBox
+)
 import sys
 import subprocess
 from load_balancer_sems import LoadBalancer
+
 
 class LoadBalancerApp(QWidget):
     def __init__(self):
@@ -123,8 +124,14 @@ class LoadBalancerApp(QWidget):
 
     def update_history(self):
         logs = self.lb.get_history()
-        formatted = "\n\n".join([f"{l['timestamp']}: {l['message']}\nStatus: {l['status']}\nThreshold: {l['threshold']}" for l in logs[-5:]])
+        formatted = "\n\n".join([
+            f"{log['timestamp']}: {log['message']}\n"
+            f"Status: {log['status']}\n"
+            f"Threshold: {log['threshold']}"
+            for log in logs[-5:]
+        ])
         self.history_display.setPlainText(formatted)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

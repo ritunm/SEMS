@@ -7,6 +7,7 @@ from datetime import datetime
 DEFAULT_THRESHOLD = 80
 LOG_FILE = "balance_logs.json"
 
+
 class LoadBalancer:
     def __init__(self, threshold=DEFAULT_THRESHOLD):
         self.zones = {
@@ -24,7 +25,10 @@ class LoadBalancer:
             self.zones[zone] = random.randint(50, 100)
 
     def check_overloads(self):
-        return {z: load for z, load in self.zones.items() if load > self.threshold}
+        return {
+            z: load for z, load in self.zones.items()
+            if load > self.threshold
+        }
 
     def balance_load(self):
         overloaded = self.check_overloads()
@@ -32,10 +36,15 @@ class LoadBalancer:
             excess = load - self.threshold
             self.zones[zone] -= excess
             self.redistribute_load(zone, excess)
-            self.log_event(f"Balanced {zone} by redistributing {excess}%")
+            self.log_event(
+                f"Balanced {zone} by redistributing {excess}%"
+            )
 
     def redistribute_load(self, source, excess):
-        receivers = [z for z in self.zones if z != source and self.zones[z] < self.threshold]
+        receivers = [
+            z for z in self.zones
+            if z != source and self.zones[z] < self.threshold
+        ]
         if not receivers:
             self.log_event("No receivers available for redistribution.")
             return
@@ -63,7 +72,9 @@ class LoadBalancer:
     def add_zone(self, name, value):
         if name not in self.zones:
             self.zones[name] = value
-            self.log_event(f"Zone {name} added with value {value}%")
+            self.log_event(
+                f"Zone {name} added with value {value}%"
+            )
 
     def delete_zone(self, name):
         if name in self.zones:
