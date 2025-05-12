@@ -3,3 +3,6 @@ pytest-html
 pytest-cov
 radon
 snakeviz
+coverage
+flake8
+bandit
