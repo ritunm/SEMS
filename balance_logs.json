@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp": "2025-05-06 15:38:53",
+    "message": "Threshold updated to 180%",
+    "status": {
+      "zone1": 65,
+      "zone2": 85,
+      "zone3": 75,
+      "zone4": 95,
+      "ZoneA": 80
+    },
+    "threshold": 180
+  }
+]

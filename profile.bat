@@ -1,0 +1,6 @@
+@echo off
+echo Running Load Balancer profiling...
+python profile_balance.py
+echo Profiling done. Launching SnakeViz...
+snakeviz test_report/balance_profile.prof
+pause
