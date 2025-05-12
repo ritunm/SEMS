@@ -88,7 +88,7 @@ class LoadBalancerApp(QWidget):
                 ['test.bat'],
                 capture_output=True,
                 text=True,
-                shell=True
+                shell=False
             )
             QMessageBox.information(
                 self,
