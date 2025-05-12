@@ -1,3 +1,5 @@
+# main_gui.py
+
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QPushButton, QLabel,
     QTextEdit, QHBoxLayout, QInputDialog, QMessageBox
@@ -82,15 +84,26 @@ class LoadBalancerApp(QWidget):
 
     def run_test_bat(self):
         try:
-            result = subprocess.run(['test.bat'], capture_output=True, text=True, shell=True)
-            QMessageBox.information(self, "Test Output", result.stdout + "\n" + result.stderr)
+            result = subprocess.run(
+                ['test.bat'],
+                capture_output=True,
+                text=True,
+                shell=True
+            )
+            QMessageBox.information(
+                self,
+                "Test Output",
+                result.stdout + "\n" + result.stderr
+            )
         except Exception as e:
             QMessageBox.critical(self, "Error", str(e))
 
     def add_zone(self):
         name, ok = QInputDialog.getText(self, 'Add Zone', 'Zone name:')
         if ok and name:
-            value, ok = QInputDialog.getInt(self, 'Add Zone', 'Initial value:', min=0, max=150)
+            value, ok = QInputDialog.getInt(
+                self, 'Add Zone', 'Initial value:', min=0, max=150
+            )
             if ok:
                 self.lb.add_zone(name, value)
                 self.update_status()
@@ -106,14 +119,18 @@ class LoadBalancerApp(QWidget):
     def update_zone(self):
         name, ok = QInputDialog.getText(self, 'Update Zone', 'Zone name:')
         if ok and name:
-            value, ok = QInputDialog.getInt(self, 'Update Zone', 'New value:', min=0, max=150)
+            value, ok = QInputDialog.getInt(
+                self, 'Update Zone', 'New value:', min=0, max=150
+            )
             if ok:
                 self.lb.update_zone_value(name, value)
                 self.update_status()
                 self.update_history()
 
     def set_threshold(self):
-        value, ok = QInputDialog.getInt(self, 'Set Threshold', 'Threshold value:', min=10, max=150)
+        value, ok = QInputDialog.getInt(
+            self, 'Set Threshold', 'Threshold value:', min=10, max=150
+        )
         if ok:
             self.lb.set_threshold(value)
             self.update_status()
@@ -138,3 +155,4 @@ if __name__ == '__main__':
     ex = LoadBalancerApp()
     ex.show()
     sys.exit(app.exec_())
+
