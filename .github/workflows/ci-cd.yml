@@ -43,3 +43,4 @@ jobs:
       - name: 🐳 Build Docker Image
         run: docker build -t sems-app .
 
+
